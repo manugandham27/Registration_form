@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Registration form using javascript</title>
+        <style>
+            body{
+                display:flex;
+                justify-content: center;
+                align-items: center;
+                height:100vh;
+                background-image: url(https://images.pexels.com/photos/1198507/pexels-photo-1198507.jpeg?cs=srgb&dl=pexels-grizzlybear-1198507.jpg&fm=jpg);
+                background-size: cover;
+
+            }
+            .form{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                background-color: rgba(145, 219, 16, 0.356);
+                width:50%;
+                height:60%;
+            }
+            .textarea{
+                display:flex;
+            }
+            label{
+                color:rgb(37, 91, 86);
+                font:bold;
+            }
+            button{
+                width:100px;
+                height:30px;
+                text-align: center;
+                position: absolute;
+                left:45%;
+                right:45%;
+                opacity: 0.9;
+                border:none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+            button:hover{
+                background-color: rgb(110, 162, 27);
+            
+            }
+        </style>
+    </head>
+    <body>
+        <div class="form">
+            <h1>Registration form</h1>
+            <form onsubmit= "return validornot()">
+                <label>Name :</label> 
+                <input type="text" id="name" placeholder="Enter the name" value="" required>
+                <label>This field is  Required</label>
+                <br><br>
+                <label>Email :</label>
+                <input type="email" id="email" placeholder="Enter the email" value="" required>
+                <label>This field is  Required</label>
+                <br><br>
+                <label>website :</label>
+                <input type="url" id="website_url" placeholder="Enter your url" value="" required>
+                <label>This field is  Required</label>
+                <br><br>
+                <div class="textarea">
+                    <label>Message :</label>
+                    <textarea type="text" id="message" rows="4" cols="20" placeholder="Enter your message(10-200)" value="" required ></textarea>
+                    <label>This field is  Required</label>
+                </div>
+                <br><br>
+                <button>Login</button>
+            </form>
+        </div>
+        <script>
+            function validornot(){
+                let name = document.getElementById("name").value;
+                let email = document.getElementById("email").value;
+                let weburl = document.getElementById("website_url").value;
+                let message = document.getElementById("message").value;
+
+                let namePattern = /^[A-Za-z\s]+$/;
+                let emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                let urlPattern = /^(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(:\d+)?(\/[^\s]*)?$/;
+
+                if(!namePattern.test(name)){
+                    alert("Enter a valid name");
+                    return false;
+                }
+                if(!emailPattern.test(email)){
+                    alert("Enter a valid email");
+                    return false;
+                }
+                if(!urlPattern.test(weburl)){
+                    alert("Enter a valid URL");
+                    return false;
+                }
+                if(message.length > 200 || message.length < 10){
+                    alert("Message should be between 10 and 200 characters");
+                    return false;
+                }
+
+                return true;
+            }
+
+            
+        </script>
+    </body>
+</html>
